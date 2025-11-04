@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+/* Optional: smooth scrolling for mobile feel */
+html, body { scroll-behavior: smooth; }
+
