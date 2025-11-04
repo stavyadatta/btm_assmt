@@ -125,7 +125,7 @@ export default function App() {
     return () => window.removeEventListener("resize", onR);
   }, [shape]);
 
-  const PASSWORD = "bunnylove";
+  const PASSWORD = "puchu";
   const handleUnlock = () => {
     if (pw.trim() === PASSWORD) {
       setUnlocked(true);
@@ -294,7 +294,7 @@ export default function App() {
           >
             <div className="w-[92vw] max-w-[420px] bg-[#fff9e6] border-4 border-dashed border-[#F2A900] rounded-3xl p-5 text-center shadow-2xl">
               <h1 className="text-2xl font-extrabold text-[#6B3A00]">🔐 Bunny Tweety Multiverse</h1>
-              <p className="text-sm text-[#8a5a00] mt-1">Welcome! Please enter the secret password to enter. 🗝️</p>
+              <p className="text-sm text-[#8a5a00] mt-1">Please enter the password (Hint: What does TWEETY POPPER WANT FROM BUNNY POPPER) 🗝️</p>
               <div className="mt-3 flex gap-2 justify-center">
                 <input
                   value={pw}
