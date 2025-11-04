@@ -14,10 +14,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci || npm i
+      - run: npm ci --include=dev   # <-- key line
+      # alt: npm ci ; with: NPM_CONFIG_PRODUCTION=false
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
       - uses: actions/deploy-pages@v4
-
