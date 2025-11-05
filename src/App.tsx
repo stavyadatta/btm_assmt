@@ -323,7 +323,6 @@ export default function App() {
                 />
                 <Button onClick={handleUnlock}>Enter</Button>
               </div>
-              <p className="text-[11px] opacity-70 mt-2">(Tip: change the password in code)</p>
             </div>
           </motion.div>
         )}
