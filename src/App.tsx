@@ -139,65 +139,77 @@ export default function App() {
     }
   };
 
-  const photos: GalleryItem[] = [
-  {
-    id: 1,
-    caption: "Our first day in Amsterdam!",
-    title: "You look sooo pretty!!!",
-    description: "Rob did so much effort to get the shot",
-    image: "/images/gallery/amsterdam_nice.jpg",
-  },
-  {
-    id: 2,
-    caption: "When we learned how to REAADDDD",
-    title: "Only one book in a year!!!",
-    description: "Asli Gyann bunny popper",
-    image: "/images/gallery/books_read.jpg",
-  },
-  {
-    id: 3,
-    caption: "When you came to my home for 2nd timee",
-    title: "You were looking like a dreaaamm",
-    description: "KITNA SAANS legi BUNNY POPPER, hey lord",
-    image: "/images/gallery/first_dates.jpg",
-  },
-  {
-    id: 4,
-    caption: "When we discovered ambassadors",
-    title: "KITNI KHUUSH THIII",
-    description: "Ambassadors dekhne ki khushi",
-    image: "/images/gallery/sunny_ambass.jpg",
-  },
-  {
-    id: 5,
-    caption: "Our besstt day in Europe!",
-    title: "You were looking like....cartooon",
-    description: "JOKE BUNNY POPPER MAZAAAKK YOU WERE LOOKING SO PUCHU",
-    image: "/images/gallery/amsterdam_puchu.jpg",
-  },
-  {
-    id: 6,
-    caption: "TUU TOH ARTT HAI",
-    title: "KAISE MIL GAYI ITNI PUCHU",
-    description: "HUHHH, honestly......I MISS YOUUUUUU NOW",
-    image: "/images/gallery/versailles.jpg",
-  },
-  {
-    id: 7,
-    caption: "Damn we look so young",
-    title: "Somehow also innocent??",
-    description: "TUNE MUJHE BIGAAD DIYAA",
-    image: "/images/gallery/kasauli.jpg",
-  },
-  {
-    id: 8,
-    caption: "YOUU MY HOMEE",
-    title: "IN OUR HEHEH mode",
-    description: "DID I MENTION THAT I LOVE YOU LIKE A LOT LOT",
-    image: "/images/gallery/at_home_puchu.jpg",
-  },
-];
+  const [photos, setPhotos] = useState<GalleryItem[]>([]);
 
+	useEffect(() => {
+	  fetch("/gallery.json")
+	    .then((res) => res.json())
+	    .then((data: GalleryItem[]) => {
+	      setPhotos(data);
+	    })
+	    .catch((err) => {
+	      console.error("Failed to load gallery.json", err);
+	    });
+	}, []);
+//   const photos: GalleryItem[] = [
+//   {
+//     id: 1,
+//     caption: "Our first day in Amsterdam!",
+//     title: "You look sooo pretty!!!",
+//     description: "Rob did so much effort to get the shot",
+//     image: "/images/gallery/amsterdam_nice.jpg",
+//   },
+//   {
+//     id: 2,
+//     caption: "When we learned how to REAADDDD",
+//     title: "Only one book in a year!!!",
+//     description: "Asli Gyann bunny popper",
+//     image: "/images/gallery/books_read.jpg",
+//   },
+//   {
+//     id: 3,
+//     caption: "When you came to my home for 2nd timee",
+//     title: "You were looking like a dreaaamm",
+//     description: "KITNA SAANS legi BUNNY POPPER, hey lord",
+//     image: "/images/gallery/first_dates.jpg",
+//   },
+//   {
+//     id: 4,
+//     caption: "When we discovered ambassadors",
+//     title: "KITNI KHUUSH THIII",
+//     description: "Ambassadors dekhne ki khushi",
+//     image: "/images/gallery/sunny_ambass.jpg",
+//   },
+//   {
+//     id: 5,
+//     caption: "Our besstt day in Europe!",
+//     title: "You were looking like....cartooon",
+//     description: "JOKE BUNNY POPPER MAZAAAKK YOU WERE LOOKING SO PUCHU",
+//     image: "/images/gallery/amsterdam_puchu.jpg",
+//   },
+//   {
+//     id: 6,
+//     caption: "TUU TOH ARTT HAI",
+//     title: "KAISE MIL GAYI ITNI PUCHU",
+//     description: "HUHHH, honestly......I MISS YOUUUUUU NOW",
+//     image: "/images/gallery/versailles.jpg",
+//   },
+//   {
+//     id: 7,
+//     caption: "Damn we look so young",
+//     title: "Somehow also innocent??",
+//     description: "TUNE MUJHE BIGAAD DIYAA",
+//     image: "/images/gallery/kasauli.jpg",
+//   },
+//   {
+//     id: 8,
+//     caption: "YOUU MY HOMEE",
+//     title: "IN OUR HEHEH mode",
+//     description: "DID I MENTION THAT I LOVE YOU LIKE A LOT LOT",
+//     image: "/images/gallery/at_home_puchu.jpg",
+//   },
+// ];
+//
   const orbitRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const el = orbitRef.current;
