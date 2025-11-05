@@ -31,17 +31,23 @@ export default function App() {
   const confettiRef = useRef<HTMLCanvasElement | null>(null);
 
   // Anniversary start date
-  const startDate = useMemo(() => new Date("2022-12-11:00:00+11:00"), []);
+  const startDate = useMemo(() => new Date(Date.UTC(2022, 12, 11)), []);
+  // const startDate = useMemo(() => new Date("2022-12-11:00:00+11:00"), []);
   const [daysTogether, setDaysTogether] = useState(0);
   useEffect(() => {
-    const tick = () => {
-      const diff = Date.now() - startDate.getTime();
-      setDaysTogether(Math.floor(diff / (1000 * 60 * 60 * 24)));
-    };
-    tick();
-    const id = setInterval(tick, 60000);
-    return () => clearInterval(id);
-  }, [startDate]);
+  const msPerDay = 24 * 60 * 60 * 1000;
+
+  const daysBetweenUTC = (from: Date, to: Date) => {
+    const a = Date.UTC(from.getUTCFullYear(), from.getUTCMonth(), from.getUTCDate());
+    const b = Date.UTC(to.getUTCFullYear(), to.getUTCMonth(), to.getUTCDate());
+    return Math.floor((b - a) / msPerDay);
+  };
+
+  const tick = () => setDaysTogether(daysBetweenUTC(startDate, new Date()));
+  tick();
+  const id = setInterval(tick, 60_000);
+  return () => clearInterval(id);
+}, [startDate]);
 
   // Particle morph canvas
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
